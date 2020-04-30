@@ -34,6 +34,7 @@ void main(void)
 
 	// no light calculation for water
 	color = vec4(1, 1, 1, 1);
+	
 	// calculate reflection coefficient
 	// using Schlick's approximation of Fresnel formula
 	float cosTheta = dot(normal, normalize(-position.xyz));

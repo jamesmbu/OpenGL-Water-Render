@@ -11,6 +11,8 @@ uniform vec3 materialDiffuse;
 
 // Uniforms: Water Related
 uniform float waterLevel;	// water level (in absolute units)
+// Uniforms: Fog Related
+uniform float fogDensity;
 
 layout (location = 0) in vec3 aVertex;
 layout (location = 2) in vec3 aNormal;
@@ -23,6 +25,8 @@ out vec2 texCoord0;
 
 // Output: Water Related
 out float waterDepth;	// water depth (positive for underwater, negative for the shore)
+// Output: Fog Related
+out float fogFactor;
 
 // Light declarations
 struct AMBIENT
@@ -78,5 +82,10 @@ void main(void)
 		color += AmbientLight(lightAmbient);
 	if (lightDir.on == 1) 
 		color += DirectionalLight(lightDir);
+	
+	// calculate the observer's altitude above the observed vertex
+	float eyeAlt = dot(-position.xyz, mat3(matrixModelView) * vec3(0, 1, 0));
+
+	fogFactor = exp2(-fogDensity * length(position) * (max(waterDepth,0) / eyeAlt));
 
 }

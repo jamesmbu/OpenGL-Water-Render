@@ -145,7 +145,8 @@ bool init()
 	ProgramWater.SendUniform("skyColor", 0.2f, 0.8f, 1.f);
 	ProgramTerrain.SendUniform("waterColor", 0.2f, 0.22f, 0.02f);
 	ProgramTerrain.SendUniform("waterLevel", waterLevel);
-
+	ProgramTerrain.SendUniform("fogColor", 0.2f, 0.22f, 0.02f);
+	ProgramTerrain.SendUniform("fogDensity", 0.3);
 	// setup lights (for basic and terrain programs only, water does not use these lights):
 	ProgramBasic.SendUniform("lightAmbient.on", 1);
 	ProgramBasic.SendUniform("lightAmbient.color", 0.1, 0.1, 0.1);
