@@ -193,6 +193,9 @@ void done()
 
 void render()
 {
+	// send the animation time to shaders
+	ProgramWater.SendUniform("t", glutGet(GLUT_ELAPSED_TIME) / 1000.f);
+
 	// this global variable controls the animation
 	float theta = glutGet(GLUT_ELAPSED_TIME) * 0.01f;
 
@@ -348,8 +351,10 @@ void onMotion(int x, int y)
 	}
 }
 
+
 int main(int argc, char **argv)
 {
+
 	// init GLUT and create Window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);

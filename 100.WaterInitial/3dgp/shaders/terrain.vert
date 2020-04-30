@@ -14,6 +14,7 @@ uniform float waterLevel;	// water level (in absolute units)
 // Uniforms: Fog Related
 uniform float fogDensity;
 
+
 layout (location = 0) in vec3 aVertex;
 layout (location = 2) in vec3 aNormal;
 layout (location = 3) in vec2 aTexCoord;
@@ -61,8 +62,10 @@ vec4 DirectionalLight(DIRECTIONAL light)
 	return color;
 }
 
+
 void main(void) 
 {
+	
 	// calculate depth of water
 	waterDepth = waterLevel - aVertex.y;
 
